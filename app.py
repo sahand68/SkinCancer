@@ -54,13 +54,8 @@ def predict(request):
     write.write(f.body)
     img = open_image(file_path)
     pred_class,pred_idx,outputs = learn.predict(img)
-   
-    file_name=secure_filename(f.name).split('.')[0]
-    im = cv2.imread(file_path)
-    plt.imshow(im)
-
     return response.json({
-        'file_name': file_name,
+        'file_name': file_path,
 
         'status': str(pred_class)
     })
